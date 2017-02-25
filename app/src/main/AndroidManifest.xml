@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.game.dhanraj.lenden">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddInfoOfdebt"
+            android:label="Add person" />
+        <activity
+            android:name=".InfoOfDebt"
+            android:label="Amount taken by the person"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".InfoOfOwedMoney"
+            android:label="Amount given to the person"
+            android:theme="@style/Theme.AppCompat" />
+        <activity android:name=".AddDebt"
+            android:label="Add amount"/>
+        <activity android:name=".updating"
+            android:label="Update person's info"/>
+        <activity android:name=".updateRadioButton"
+            android:label="Update"/>
+        <activity android:name=".updateRadioButton1"
+            android:label="Update"/>
+        <activity android:name=".Updating1"
+            android:label="Update person's info"/>
+        <activity android:name=".AddInfoOfdebt1"
+            android:label="Add person"/>
+        <activity android:name=".AddDebt1"
+            android:label="Add amount"></activity>
+    </application>
+
+</manifest>

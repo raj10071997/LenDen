@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/debt"
+        android:text="Debt"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#000"
+        android:dividerHeight="2dp"
+        android:id="@+id/owedmoneykitnihai"
+        android:layout_below="@+id/debt"
+
+        />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:menu_fab_size="normal"
+        app:menu_openDirection="up"
+        app:menu_icon="@android:drawable/ic_media_play"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentRight="true"
+        app:menu_fab_label="Menu"
+        fab:menu_labels_position="left"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/floatingactionmenu">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendemailbutton"
+            android:src="@android:drawable/ic_dialog_email"
+            fab:fab_size="mini"
+
+            app:fab_label="Send email"
+            />
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add1"
+            android:src="@android:drawable/ic_input_add"
+            fab:fab_size="mini"
+
+            app:fab_label="Add amount"
+            />
+
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+
+
+
+
+</RelativeLayout>
