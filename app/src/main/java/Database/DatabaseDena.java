@@ -82,7 +82,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantsDena.Table_Name,null,contentValues);
-        Log.v("DHANRAJ","fuck u");
+        Log.v("DHANRAJ","check");
         db.close();
 
     }
@@ -99,7 +99,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantLena.Table_Name,null,contentValues);
-        Log.v("DHANRAJ SAhu","fuck u");
+        Log.v("DHANRAJ SAhu","check1");
         db.close();
     }
 
@@ -120,7 +120,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantsDena.Debt_Table_Name,null,contentValues);
-        Log.v("DHANRAJ SAhu","fuck u");
+        Log.v("DHANRAJ SAhu","check2");
         db.close();
     }
 
@@ -138,7 +138,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantLena.owed_Table_Name,null,contentValues);
-        Log.v("DHANRAJ SAhu","fuck u");
+        Log.v("DHANRAJ SAhu","check3");
         db.close();
     }
 
@@ -154,7 +154,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.update(ConstantsDena.Debt_Table_Name,contentValues,ConstantsDena.Debt_Key_id + " = "+ID,null);
-        Log.v("DHANRAJ SAhu","fuck uuuuu"+ID+","+text);
+        Log.v("DHANRAJ SAhu","check4"+ID+","+text);
         db.close();
     }
 
@@ -169,7 +169,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.update(ConstantLena.owed_Table_Name,contentValues,ConstantLena.Owed_Key_id + " = "+ID,null);
-        Log.v("DHANRAJ SAhu","fuck uuuuu"+ID+","+text);
+        Log.v("DHANRAJ SAhu","check5"+ID+","+text);
         db.close();
     }
 
@@ -223,7 +223,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ ssss","fuck u");
+        Log.v("DHANRAJ ssss","check5");
         return  denewaladata1;
     }
 
@@ -253,7 +253,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ hhhh","fuck u");
+        Log.v("DHANRAJ hhhh","check6");
         return denewaladata;
     }
 
@@ -369,7 +369,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ ssss","fuck u");
+        Log.v("DHANRAJ ssss","check7");
         return  sumofdebt;
     }
 
@@ -411,7 +411,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ hhhh","fuck u");
+        Log.v("DHANRAJ hhhh","check8");
         return lenewaladata;
     }
 
@@ -451,7 +451,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        //Log.v("DHANRAJ ssss","fuck u");
+        //Log.v("DHANRAJ ssss","check9");
         return  lenewaladata1;
     }
 
@@ -481,7 +481,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ ssss","fuck u");
+        Log.v("DHANRAJ ssss","check10");
         return  sumofowedmoney;
     }
 
