@@ -28,20 +28,52 @@
             android:name=".InfoOfOwedMoney"
             android:label="Amount given to the person"
             android:theme="@style/Theme.AppCompat" />
-        <activity android:name=".AddDebt"
-            android:label="Add amount"/>
-        <activity android:name=".updating"
-            android:label="Update person's info"/>
-        <activity android:name=".updateRadioButton"
-            android:label="Update"/>
-        <activity android:name=".updateRadioButton1"
-            android:label="Update"/>
-        <activity android:name=".Updating1"
-            android:label="Update person's info"/>
-        <activity android:name=".AddInfoOfdebt1"
-            android:label="Add person"/>
-        <activity android:name=".AddDebt1"
-            android:label="Add amount"></activity>
+        <activity
+            android:name=".AddDebt"
+            android:label="Add amount" />
+        <activity
+            android:name=".updating"
+            android:label="Update person&apos;s info" />
+        <activity
+            android:name=".updateRadioButton"
+            android:label="Update" />
+        <activity
+            android:name=".updateRadioButton1"
+            android:label="Update" />
+        <activity
+            android:name=".Updating1"
+            android:label="Update person&apos;s info" />
+        <activity
+            android:name=".AddInfoOfdebt1"
+            android:label="Add person" />
+        <activity
+            android:name=".AddDebt1"
+            android:label="Add amount" />
+        <activity
+            android:name=".Event2Activity"
+            android:label="Select Any One"
+            />
+        <activity
+            android:name=".ListOfMembers"
+            android:label="List Of Members in the Event"/>
+        <activity
+            android:name=".AddMembers"
+            android:label="Add the info of the member"/>
+        <activity
+            android:name=".UpdateInfoOfListMembers"
+            android:label="Update info of the memeber"/>
+        <activity
+            android:name=".AddInfoOfEvent"
+            android:label="Add Event"/>
+        <activity
+            android:name=".ListOfExpend"
+            android:label="List of Expenditure in the Event"/>
+        <activity
+            android:name=".AddExpenditure"
+            android:label="Add expenditure"/>
+        <activity
+            android:name=".UpdateInfoOfListExpend"
+            android:label="Update the info of Expenditure"></activity>
     </application>
 
 </manifest>

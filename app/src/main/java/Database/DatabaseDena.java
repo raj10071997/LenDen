@@ -12,6 +12,7 @@ import java.util.Date;
 
 import Constant.ConstantLena;
 import Constant.ConstantsDena;
+import Constant.ConstantsEvent;
 import Model.DataOfDebt;
 
 /**
@@ -26,6 +27,19 @@ public class DatabaseDena extends SQLiteOpenHelper {
     private final ArrayList<DataOfDebt> lenewaladata = new ArrayList<>();
     private final ArrayList<DataOfDebt> lenewaladata1 = new ArrayList<>();
 
+    private final ArrayList<DataOfDebt> eventwaladata = new ArrayList<>();
+    private final ArrayList<DataOfDebt> listofMEMBERS = new ArrayList<>();
+
+    private final ArrayList<DataOfDebt> listofEXPEND = new ArrayList<>();
+
+    private static final String create_event_table="CREATE TABLE " + ConstantsEvent.Table_Name+
+            " ("+ConstantsEvent.Key_Id+" INTEGER PRIMARY KEY AUTOINCREMENT," + ConstantsEvent.EventName+ " TEXT,"+
+            ConstantsEvent.Time + " LONG)";
+
+    private static  final String create_event_expend_table="CREATE TABLE " + ConstantsEvent.List_of_expend_table+
+            " ("+ConstantsEvent.List_Key_id+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ConstantsEvent.nameofmembers+ " TEXT,"+
+            ConstantsEvent.reasonofexpend + " TEXT,"+ConstantsEvent.parent_id+" INTEGER,"+ConstantsEvent.amountofexpend + " INTEGER,"+ ConstantsEvent.Time+
+            " LONG)";
 
     private static final String Create_debt_table="CREATE TABLE " + ConstantsDena.Debt_Table_Name+
             " ("+ConstantsDena.Debt_Key_id+" INTEGER PRIMARY KEY AUTOINCREMENT," + ConstantsDena.Debt+
@@ -36,6 +50,10 @@ public class DatabaseDena extends SQLiteOpenHelper {
             " ("+ConstantLena.Owed_Key_id+" INTEGER PRIMARY KEY AUTOINCREMENT," + ConstantLena.Owed_money+
             " INTEGER," + ConstantLena.Time + " LONG,"+ConstantLena.radio_value + " TEXT," +ConstantLena.ReasonOFOwingMoney + " TEXT,"+
             ConstantLena.parent_id+" INTEGER)";
+
+    private static final String create_listofmembers_table = "CREATE TABLE " + ConstantsEvent.List_of_members_table+
+            " ("+ConstantsEvent.List_Key_id + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ConstantsEvent.nameofmembers+" TEXT,"+
+            ConstantsEvent.EmailID+ " TEXT,"+ConstantsEvent.parent_id+" INTEGER)";
 
     public DatabaseDena(Context context) {
         super(context, ConstantsDena.Database_Name, null, ConstantsDena.Database_Version);
@@ -52,7 +70,9 @@ public class DatabaseDena extends SQLiteOpenHelper {
                 " ("+ ConstantLena.Key_Id + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ ConstantLena.PersonName +
                 " TEXT," + ConstantLena.MobileNumber + "  TEXT," + ConstantLena.EmailID + " TEXT)";
 
-
+        db.execSQL(create_event_expend_table);
+        db.execSQL(create_event_table);
+        db.execSQL(create_listofmembers_table);
         db.execSQL(Create_Owed_table);
         db.execSQL(Create_Oweing_money_Table);
         db.execSQL(Create_ListofUdhari_Table);
@@ -66,7 +86,10 @@ public class DatabaseDena extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF IT EXISTS "+ ConstantsDena.Table_Name);
         db.execSQL("DROP TABLE IF IT EXISTS "+ ConstantLena.owed_Table_Name);
         db.execSQL("DROP TABLE IF IT EXISTS "+ ConstantLena.Table_Name);
-        db.execSQL("DROP TABLE IF IT EXISTS "+ConstantsDena.Debt_Table_Name);
+        db.execSQL("DROP TABLE IF IT EXISTS "+ ConstantsDena.Debt_Table_Name);
+        db.execSQL("DROP TABLE IF IT EXISTS "+ ConstantsEvent.Table_Name);
+        db.execSQL("DROP TABLE IF IT EXISTS "+ ConstantsEvent.List_of_members_table);
+        db.execSQL("DROP TABLE IF IT EXISTS "+ ConstantsEvent.List_of_expend_table);
         onCreate(db);
 
     }
@@ -82,7 +105,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantsDena.Table_Name,null,contentValues);
-        Log.v("DHANRAJ","fuck u");
+        Log.v("DHANRAJ","check1");
         db.close();
 
     }
@@ -99,7 +122,21 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantLena.Table_Name,null,contentValues);
-        Log.v("DHANRAJ SAhu","fuck u");
+        Log.v("DHANRAJ SAhu","check2");
+        db.close();
+    }
+
+    public void addEvent(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ConstantsEvent.EventName,name);
+        contentValues.put(ConstantsEvent.Time,String.valueOf(java.lang.System.currentTimeMillis()));
+
+
+        db.insert(ConstantsEvent.Table_Name,null,contentValues);
+        Log.v("DHANRAJ SAhu","check3");
         db.close();
     }
 
@@ -120,7 +157,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantsDena.Debt_Table_Name,null,contentValues);
-        Log.v("DHANRAJ SAhu","fuck u");
+        Log.v("DHANRAJ SAhu","check4");
         db.close();
     }
 
@@ -138,8 +175,41 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.insert(ConstantLena.owed_Table_Name,null,contentValues);
-        Log.v("DHANRAJ SAhu","fuck u");
+        Log.v("DHANRAJ SAhu","check5");
         db.close();
+    }
+
+    public void addMember1(DataOfDebt data)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+
+        contentValues.put(ConstantsEvent.nameofmembers,data.getName());
+        contentValues.put(ConstantsEvent.parent_id,data.getParentid());
+        contentValues.put(ConstantsEvent.EmailID,data.getEmailid());
+
+
+        db.insert(ConstantsEvent.List_of_members_table,null,contentValues);
+        Log.v("DHANRAJ SAhu","check6");
+        db.close();
+    }
+
+    public void addexpend(DataOfDebt dena)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ConstantsEvent.nameofmembers,dena.getName());
+        contentValues.put(ConstantsEvent.parent_id,dena.getParentid());
+        contentValues.put(ConstantsEvent.reasonofexpend,dena.getReasonofdebt());
+        contentValues.put(ConstantsEvent.amountofexpend,dena.getDebtamount());
+        contentValues.put(ConstantsEvent.Time,String.valueOf(java.lang.System.currentTimeMillis()));
+
+        db.insert(ConstantsEvent.List_of_expend_table,null,contentValues);
+        Log.v("DHANRAJ SAhu","check7");
+        db.close();
+
     }
 
 
@@ -154,7 +224,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.update(ConstantsDena.Debt_Table_Name,contentValues,ConstantsDena.Debt_Key_id + " = "+ID,null);
-        Log.v("DHANRAJ SAhu","fuck uuuuu"+ID+","+text);
+        Log.v("DHANRAJ SAhu","check8"+ID+","+text);
         db.close();
     }
 
@@ -169,10 +239,37 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
 
         db.update(ConstantLena.owed_Table_Name,contentValues,ConstantLena.Owed_Key_id + " = "+ID,null);
-        Log.v("DHANRAJ SAhu","fuck uuuuu"+ID+","+text);
+        Log.v("DHANRAJ SAhu","check9"+ID+","+text);
         db.close();
     }
 
+    public void updatetheinfoofmember(DataOfDebt dena)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ConstantsEvent.EmailID,dena.getEmailid());
+        contentValues.put(ConstantsEvent.nameofmembers,dena.getName());
+
+        db.update(ConstantsEvent.List_of_members_table,contentValues,ConstantsEvent.List_Key_id+ " = "+dena.getDebt_keyid(),null);
+
+        db.close();
+    }
+
+    public void updatetheinfoofexpend(DataOfDebt dena)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ConstantsEvent.nameofmembers,dena.getName());
+        contentValues.put(ConstantsEvent.reasonofexpend,dena.getReasonofdebt());
+        contentValues.put(ConstantsEvent.amountofexpend,dena.getDebtamount());
+
+
+        db.update(ConstantsEvent.List_of_expend_table,contentValues,ConstantsEvent.List_Key_id+ " = "+dena.getDebt_keyid(),null);
+
+        db.close();
+    }
 
 
 
@@ -223,7 +320,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ ssss","fuck u");
+        Log.v("DHANRAJ ssss","check10");
         return  denewaladata1;
     }
 
@@ -253,7 +350,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ hhhh","fuck u");
+        Log.v("DHANRAJ hhhh","check11");
         return denewaladata;
     }
 
@@ -321,6 +418,27 @@ public class DatabaseDena extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteRowofinnerlistmember(Integer ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ConstantsEvent.List_of_members_table,ConstantsEvent.parent_id+" = "+ID,null);
+        db.close();
+    }
+
+    public void deleteRowofinnerlistexpend(Integer ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ConstantsEvent.List_of_expend_table,ConstantsEvent.parent_id+" = "+ID,null);
+        db.close();
+    }
+
+    public void deleteRowofouterlistevent(Integer ID)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ConstantsEvent.Table_Name,ConstantsEvent.Key_Id+" = "+ID,null);
+        db.close();
+    }
+
     public void deleteRowofouterlist1(Integer ID)
     {
 
@@ -369,7 +487,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ ssss","fuck u");
+        Log.v("DHANRAJ ssss","check12");
         return  sumofdebt;
     }
 
@@ -387,6 +505,47 @@ public class DatabaseDena extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteRowofinnerlistevent(Integer id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ConstantsEvent.List_of_members_table,ConstantsEvent.List_Key_id +" = "+id,null);
+        db.close();
+    }
+
+    public void deleteRowofinnerlisteventexpend(Integer id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(ConstantsEvent.List_of_expend_table,ConstantsEvent.List_Key_id +" = "+id,null);
+        db.close();
+    }
+
+    public ArrayList<DataOfDebt> getEvent()
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.query(ConstantsEvent.Table_Name,new String[]{ConstantsEvent.Key_Id,ConstantsEvent.EventName,
+        ConstantsEvent.Time},null,null,null,null,null);
+
+        if(cursor.moveToFirst())
+        {
+            do{
+                DataOfDebt dena = new DataOfDebt();
+                dena.setUdhariTableId(cursor.getInt(cursor.getColumnIndex(ConstantsEvent.Key_Id)));
+                dena.setName(cursor.getString(cursor.getColumnIndex(ConstantsEvent.EventName)));
+                java.text.DateFormat dateFormat =java.text.DateFormat.getDateInstance();
+                String dataDataofevent = dateFormat.format(new Date(cursor.getLong(cursor.getColumnIndex(ConstantsEvent.Time))).getTime());
+                dena.setTime(dataDataofevent);
+
+
+                eventwaladata.add(dena);
+
+            }while(cursor.moveToNext());
+        }
+        Log.v("DHANRAJ hhhh","check13");
+        return eventwaladata;
+
+    }
     public ArrayList<DataOfDebt> getOwedmoney() {
 
         String selectQuery = "SELECT * FROM " + ConstantLena.Table_Name;
@@ -411,7 +570,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ hhhh","fuck u");
+        Log.v("DHANRAJ hhhh","check14");
         return lenewaladata;
     }
 
@@ -421,9 +580,6 @@ public class DatabaseDena extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + ConstantsDena.Debt_Table_Name;
 
         SQLiteDatabase db = this.getWritableDatabase();
-
-
-
 
 
         Cursor cursor = db.query(ConstantLena.owed_Table_Name,new String[]{ConstantLena.Owed_Key_id,
@@ -451,9 +607,70 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        //Log.v("DHANRAJ ssss","fuck u");
+
         return  lenewaladata1;
     }
+
+    public ArrayList<DataOfDebt> getlistofmembers(Integer ID)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        Cursor cursor = db.query(ConstantsEvent.List_of_members_table,new String[]{ConstantsEvent.List_Key_id,
+                        ConstantsEvent.nameofmembers,ConstantsEvent.EmailID,ConstantsEvent.parent_id},
+                ConstantsEvent.parent_id + " = "+ ID + "",null,null,null,null);
+
+        if(cursor.moveToFirst())
+        {
+            do{
+                DataOfDebt dena = new DataOfDebt();
+
+                dena.setDebt_keyid(cursor.getInt(cursor.getColumnIndex(ConstantsEvent.List_Key_id)));
+                dena.setParentid(cursor.getInt(cursor.getColumnIndex(ConstantsEvent.parent_id)));
+                dena.setEmailid(cursor.getString(cursor.getColumnIndex(ConstantsEvent.EmailID)));
+                dena.setName(cursor.getString(cursor.getColumnIndex(ConstantsEvent.nameofmembers)));
+
+                listofMEMBERS.add(dena);
+
+            }while(cursor.moveToNext());
+        }
+
+        return  listofMEMBERS;
+    }
+
+    public ArrayList<DataOfDebt> getlistofexpend(Integer ID)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        Cursor cursor = db.query(ConstantsEvent.List_of_expend_table,new String[]{ConstantsEvent.List_Key_id,
+                        ConstantsEvent.nameofmembers,ConstantsEvent.Time,ConstantsEvent.parent_id,ConstantsEvent.reasonofexpend,ConstantsEvent.amountofexpend},
+                ConstantsEvent.parent_id + " = "+ ID + "",null,null,null,null);
+
+        if(cursor.moveToFirst())
+        {
+            do{
+                DataOfDebt dena = new DataOfDebt();
+
+                dena.setDebt_keyid(cursor.getInt(cursor.getColumnIndex(ConstantsEvent.List_Key_id)));
+                dena.setParentid(cursor.getInt(cursor.getColumnIndex(ConstantsEvent.parent_id)));
+                dena.setReasonofdebt(cursor.getString(cursor.getColumnIndex(ConstantsEvent.reasonofexpend)));
+                dena.setName(cursor.getString(cursor.getColumnIndex(ConstantsEvent.nameofmembers)));
+                dena.setDebtamount(cursor.getString(cursor.getColumnIndex(ConstantsEvent.amountofexpend)));
+                java.text.DateFormat dateFormat =java.text.DateFormat.getDateInstance();
+                String dataDataofevent = dateFormat.format(new Date(cursor.getLong(cursor.getColumnIndex(ConstantsEvent.Time))).getTime());
+                dena.setTime(dataDataofevent);
+
+                listofEXPEND.add(dena);
+
+            }while(cursor.moveToNext());
+        }
+
+        return  listofEXPEND;
+    }
+
 
 
     public ArrayList<DataOfDebt> getsumofowedmoney(Integer ID) {
@@ -481,7 +698,7 @@ public class DatabaseDena extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }
-        Log.v("DHANRAJ ssss","fuck u");
+
         return  sumofowedmoney;
     }
 

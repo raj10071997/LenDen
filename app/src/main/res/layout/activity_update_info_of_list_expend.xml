@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_update_info_of_list_members"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.game.dhanraj.lenden.UpdateInfoOfListMembers">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Name"
+        android:id="@+id/updatingnameofmembersforexpend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textStyle="italic"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/updatingnameofmembersforexpend"
+        android:layout_marginTop="10dp"
+        android:id="@+id/edittextupdatenameexpend"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Reason"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/edittextupdatenameexpend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/updatingemailidofmembersforexpend"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/updatingemailidofmembersforexpend"
+        android:layout_marginTop="10dp"
+        android:id="@+id/edittextupdatereasonofexpend"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Amount"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:layout_below="@+id/edittextupdatereasonofexpend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/TExtviewofexpned"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TExtviewofexpned"
+        android:layout_marginTop="10dp"
+        android:id="@+id/edittextupdateamountofexpend"
+        />
+
+
+
+
+
+    <com.cuboid.cuboidcirclebutton.CuboidButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:text="save"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/saveupdatedinfoofexpend"/>
+</RelativeLayout>

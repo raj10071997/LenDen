@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     class pagerAdapter extends FragmentPagerAdapter{
         int icons [] = {R.mipmap.ic_launcher1,R.mipmap.ic_launcher};
 
-        private final String titles[] = {"Dena hai","Lena hai"};
+        private final String titles[] = {"My Debts","Credits","Events"};
 
 
         public pagerAdapter(FragmentManager fm) {
@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     return new MainFragment();
                 case 1:
                     return new PerfectFragment();
+                case 2:
+                    return new Events();
             }
             return null;
         }
